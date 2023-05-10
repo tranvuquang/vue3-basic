@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <h1>Viec can lam</h1>
+    <h1>Viec can lam </h1>
   </header>
 </template>
 
