@@ -1,4 +1,5 @@
 <template>
+  <AddTodo @add-todo="addTodo" />
   <TodoItem
     v-for="todo in todos"
     v-bind:key="todo.id"
@@ -11,12 +12,14 @@
 <script>
 import { ref } from "vue";
 import TodoItem from "./TodoItem.vue";
+import AddTodo from "./AddTodo.vue";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Todos",
   components: {
     TodoItem,
+    AddTodo,
   },
   setup() {
     const todos = ref([
@@ -51,10 +54,15 @@ export default {
         return todo.id !== id;
       });
     };
+
+    const addTodo = (newTodo) => {
+      todos.value.push(newTodo);
+    };
     return {
       todos,
       markComplete,
       deleteTodo,
+      addTodo,
     };
   },
 };
