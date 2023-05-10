@@ -24,7 +24,6 @@ export default {
     };
 
     const deleteItem = () => {
-    //   console.log(props.todoProps.id);
       context.emit("delete-item", props.todoProps.id);
     };
     return {
