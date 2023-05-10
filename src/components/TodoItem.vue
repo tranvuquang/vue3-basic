@@ -3,16 +3,35 @@
     :class="['todo-item', todoProps.completed ? 'is-completed' : '']"
     :id="todoProps.id"
   >
-    <input type="checkbox" :checked="todoProps.completed"/>
+    <input
+      type="checkbox"
+      :checked="todoProps.completed"
+      v-on:change="martItemCompleted"
+    />
     {{ todoProps.title }}
-    <button class="del-btn">Delete</button>
+    <button class="del-btn" @click="deleteItem">Delete</button>
   </p>
 </template>
 
 <script>
+// import { ref } from "vue";
 export default {
   name: "TodoItem",
   props: ["todoProps"],
+  setup(props, context) {
+    const martItemCompleted = () => {
+      context.emit("item-completed", props.todoProps.id);
+    };
+
+    const deleteItem = () => {
+    //   console.log(props.todoProps.id);
+      context.emit("delete-item", props.todoProps.id);
+    };
+    return {
+      martItemCompleted,
+      deleteItem,
+    };
+  },
 };
 </script>
 
